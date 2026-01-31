@@ -1,0 +1,11 @@
+{
+  "name": "api-service",
+  "version": "1.0.0",
+  "description": "Minimal API service for Kubernetes practice",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
