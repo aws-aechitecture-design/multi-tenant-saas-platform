@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet 
+metadata:
+  name: api-service
+spec: # <-- What I Want
+  # modify replicas accourding to your case
+  replicas: 3 # the promise
+  selector: # which pods do i own 
+    matchLabels:
+      app: api
+  template: # the pod blueprint
+    metadata: # identity
+      labels:
+        app: api 
+    spec:
+      containers:
+        - name: api-service
+          image: api-service:1.0.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
