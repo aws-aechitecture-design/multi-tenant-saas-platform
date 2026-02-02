@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Pod 
 metadata:
   name: api-service 
+  labels: # labels important for find pod for other operation like replicaSet
+    app: api 
 spec:
    containers:
     - name: api-service 
