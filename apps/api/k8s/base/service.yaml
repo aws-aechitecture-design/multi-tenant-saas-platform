@@ -1,0 +1,13 @@
+apiVersion: v1  # Services belong to the core API group.
+kind: Service # Create a stable network endpoint. Not a Pod. Not a controller. A network abstraction.
+metadata:
+  name: api-service # The Service name  ,The DNS name inside the cluster,Inside the cluster, other Pods can reach it via: http://api-service Or fully qualified: http://api-service.default.svc.cluster.local
+spec: # This defines the desired networking behavior.
+  type: ClusterIP # This is the default. It means: “Create an internal virtual IP, only accessible inside the cluster.” No external access. No node port. No cloud load balancer. Perfect for internal microservice communication.
+  selector: # This is critical.  The Service will: Look for Pods with label: app=api, Route traffic only to those Pods,If labels don’t match: Service has no endpoints ,Traffic goes nowhere
+  # Remember:  Remember:
+    app: api 
+  ports: # This defines how traffic flows.
+    - port: 80 # This is the port the Service exposes. Inside the cluster, other Pods call: http://api-service:80  Even if your container runs on 3000.
+      targetPort: 3000 # This is the port inside the Pod container. Traffic flow: Client → Service:80 → Pod:3000, Service maps port 80 to containerPort 3000.
+      protocol: TCP # Default is TCP. Most HTTP apps use TCP.
