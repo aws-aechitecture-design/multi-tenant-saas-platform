@@ -34,6 +34,9 @@ spec:
                 secretKeyRef:
                   name: api-secret
                   key: DB_PASSWORD
+          volumeMounts:
+            - name: api-data 
+              mountPath: /data 
           readinessProbe:
             httpGet:
               path: /ready
@@ -48,3 +51,6 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 10
             failureThreshold: 3
+      volumes: 
+        - name: api-data 
+          emptyDir: {}
