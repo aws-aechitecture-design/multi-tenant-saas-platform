@@ -53,4 +53,6 @@ spec:
             failureThreshold: 3
       volumes: 
         - name: api-data 
-          emptyDir: {}
+          #emptyDir: {}
+          persistentVolumeClaim:
+            claimName: api-pvc

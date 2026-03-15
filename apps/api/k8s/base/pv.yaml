@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: PersistentVolume 
+metadata:
+  name: api-pv 
+spec:
+  capacity:
+    storage: 1Gi # Disk size
+  accessModes: # How Pod access it 
+    - ReadWriteOnce
+  hostPath: # node directoriy used as disk
+    path: /mnt/data/api-storage
