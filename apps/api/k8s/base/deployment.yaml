@@ -55,4 +55,4 @@ spec:
         - name: api-data 
           #emptyDir: {}
           persistentVolumeClaim:
-            claimName: api-pvc
+            claimName: api-pvc-storage-class
