@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres # namd of this service used for dns inside cluster
+spec:
+  clusterIP: None # This is makes it Headless
+  selector:
+    app: postgres # this name of pods that this Serivce looking for,
+  ports:
+    - port: 5432
+      targetPort: 5432
