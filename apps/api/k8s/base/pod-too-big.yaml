@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-too-big
+  namespace: saas-practice
+spec:
+  containers:
+    - name: api
+      image: nginx
+      resources:
+        limits:
+          cpu: "800m"           # exceeds max of 500m !
+          memory: "1Gi"         # exceeds max of 512Mi !

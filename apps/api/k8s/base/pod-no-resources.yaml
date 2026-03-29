@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-no-resources
+  namespace: saas-practice
+spec:
+  containers:
+    - name: api
+      image: nginx
