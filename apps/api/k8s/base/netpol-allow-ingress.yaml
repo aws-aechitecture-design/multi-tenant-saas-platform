@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-client-to-api
+  namespace: saas-practice
+spec:
+  podSelector:
+    matchLabels:
+      app: api # this policy applied to api-pod
+  policyTypes:
+    - Ingress 
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: client # only allows traffic from client-pod
+      ports:
+        - protocol: TCP 
+          port: 80 # only on port 80
