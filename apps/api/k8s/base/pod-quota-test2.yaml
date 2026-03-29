@@ -1,0 +1,17 @@
+# pod-quota-test2.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-quota-4
+  namespace: saas-practice
+spec:
+  containers:
+    - name: api
+      image: nginx
+      resources:
+        requests:
+          cpu: "50m"
+          memory: "64Mi"
+        limits:
+          cpu: "100m"
+          memory: "128Mi"

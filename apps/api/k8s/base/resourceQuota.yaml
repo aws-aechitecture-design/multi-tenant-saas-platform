@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: saas-quota
+  namespace: saas-practice 
+spec:
+  hard:
+    requests.cpu: "400m" # all pods combined cannot REQUEST more than 400m
+    requests.memory: "512Mi" # all pods combined cannot REQUEST more than 512Mi
+    limits.cpu: "800m" # all pods combined cannot have LIMITS more than 800m
+    limits.memory: "1Gi" # all pods combined cannot have LIMITS more than 1Gi
+    pods: "4" # max 4 pods total in this namespace
