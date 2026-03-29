@@ -18,6 +18,13 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 3000
+          resources: 
+            requests:
+              cpu: "100m" # 0.1 core guaranted
+              memory: "128Mi" # 128MB guaranted
+            limits:
+              cpu: "200m" # 0.2 core max
+              memory: "256Mi" # 256MB max - exceed this = OOMKilled
           env:
             - name: APP_ENV
               valueFrom:
@@ -51,6 +58,7 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 10
             failureThreshold: 3
+          
       volumes: 
         - name: api-data 
           #emptyDir: {}
