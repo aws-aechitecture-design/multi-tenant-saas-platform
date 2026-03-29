@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: api-reader-binding
+  namespace: saas-practice
+subjects: # who gets the permission
+  - kind: ServiceAccount
+    name: api-service-account # must match your ServiceAccount name
+    namespace: saas-practice
+roleRef:  # What permission they get
+  kind: Role 
+  name: api-reader-role # must match your Role name
+  apiGroup: rbac.authorization.k8s.io

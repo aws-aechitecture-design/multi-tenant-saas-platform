@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: api-reader-role 
+  namespace: saas-practice
+rules:
+  - apiGroups: [""] # core group ->  Pods, Services, ConfigMaps, Secrets
+    resources: ["pods"] # can access pods
+    verbs: ["get","list","watch"] # read only
+
+  - apiGroups: [""] # core group
+    resources: ["configmaps"] # can access configMaps
+    verbs: ["get","list"] # read only
+
+# Notice : no rule for deployments  = zero access to Deployment
