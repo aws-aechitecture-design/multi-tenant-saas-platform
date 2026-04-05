@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob 
+metadata:
+  name: cleanup-cronjob
+  namespace: saas-practice 
+spec:
+  schedule: "*/1 * * * *" # run every 1 minute
+  concurrencyPolicy: Forbid # don't start new job if previous is still running
+  successfulJobsHistoryLimit: 3 # keep last 3 successful jobs
+  failedJobsHistoryLimit: 1 # keep last 1 failed job
+  jobTemplate:
+    spec: 
+      template:
+        spec:
+          containers: 
+            - name: cleanup 
+              image: busybox 
+              command: ["sh", "-c", "echo Cleaning up at $(date) && sleep 5 && echo Cleanup done!"]
+              resources:
+                requests:
+                  cpu: "50m" 
+                  memory: "64Mi"
+                limits:
+                  cpu: "100m"
+                  memory: "128Mi"
+          restartPolicy: Never 
