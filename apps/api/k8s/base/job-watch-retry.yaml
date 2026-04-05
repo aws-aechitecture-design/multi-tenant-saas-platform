@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job 
+metadata:
+  name: retry-job
+  namespace: saas-practice
+spec:
+  backoffLimit: 3 # retry up to 3 times before giving up 
+  activeDeadlineSeconds: 60 # kill the job if it takes more than 60 seconds total
+  template: 
+    spec:
+      containers:
+        - name: retry-job
+          image: busybox 
+          command: ["sh","-c", "echo Attempting task... && exit 1"] # exit 1 = always fail
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+      restartPolicy: Never 
